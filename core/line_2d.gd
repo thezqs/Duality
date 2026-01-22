@@ -31,14 +31,11 @@ var is_activated: bool = false:
 		
 		var tween = create_tween()
 		
+		tween.tween_property(pointer, "modulate", Color(1,1,1,int(new)), animation_activate_time)
+		
 		if new:
 			pointer.visible = new
-			
-			tween.tween_property(pointer, "modulate", Color(1,1,1,1), animation_activate_time)
-			
 		else:
-			tween.tween_property(pointer, "modulate", Color(1,1,1,0), animation_activate_time)
-			
 			# esperamos a que se desvanesca para cambiar visible a false
 			await tween.finished
 			pointer.visible = new
@@ -65,6 +62,8 @@ func _physics_process(_delta: float) -> void:
 	
 	var current_time: float = GameManager.current_time
 	
+	# NOTA: Uso la 'viewport_size_x' porque la linea rotara en el futuro. 
+	# Y prefiero que haya espacio de sobra a que se vea como si las notas aparecen de la nada.
 	var viewport_size_x: float = GameManager.viewport_size_x
 	
 	for note in current_notes.keys():
@@ -78,7 +77,7 @@ func _physics_process(_delta: float) -> void:
 		
 		var weight = (current_time - times.time_init) / denominator
 		
-		note.position.y = lerp(viewport_size_x, 0, weight)
+		note.position.y = lerp(-viewport_size_x, 0, weight)
 
 func add_note(pos_x: float, time_init: float, time_end: float):
 	pos_x = clamp(pos_x, -horizontal_width, horizontal_width) 
@@ -94,3 +93,6 @@ func _on_area_entered(area: Area2D, is_aciert: bool) -> void:
 	if area == lostLine or not is_activated or area.is_in_group("Line"): return
 	
 	GameManager.points += int(is_aciert)
+	
+	area.queue_free()
+	current_notes.erase(area)

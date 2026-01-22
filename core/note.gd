@@ -7,4 +7,5 @@ enum TYPE {DARK, LIGHT}
 var current_type: TYPE:
 	set(new):
 		current_type = new
+		
 		modulate = Color(new,new,new)
