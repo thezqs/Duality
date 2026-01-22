@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://77pt0i7yqdcv"
+path="res://.godot/imported/Electro-Light - Throwback [NCS Release].mp3-053cba5028142518d15ad21a88e808ae.mp3str"
+
+[deps]
+
+source_file="res://Electro-Light - Throwback [NCS Release].mp3"
+dest_files=["res://.godot/imported/Electro-Light - Throwback [NCS Release].mp3-053cba5028142518d15ad21a88e808ae.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
