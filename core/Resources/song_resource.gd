@@ -26,6 +26,9 @@ enum DIFFICULTIES {SD,HD, FOUR_K, EIGHT_K}
 ## La dificultad
 @export var difficulty: DIFFICULTIES
 
+## El bpm de la cancion
+@export var bpm: int = 120
+
 @export_category("animation")
 
 ## Todos los loops contenidos.
