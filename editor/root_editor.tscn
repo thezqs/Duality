@@ -1,42 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpip07qgqvpp7"]
+[gd_scene load_steps=5 format=3 uid="uid://bpip07qgqvpp7"]
 
 [ext_resource type="Script" path="res://editor/root_editor.gd" id="1_02br5"]
-[ext_resource type="Script" path="res://editor/viewport.gd" id="1_8618v"]
-[ext_resource type="Script" path="res://editor/inspector.gd" id="2_atvsg"]
-[ext_resource type="Script" path="res://editor/h_box_container.gd" id="3_atvsg"]
-[ext_resource type="Script" path="res://core/animation_loop_player.gd" id="4_02br5"]
-[ext_resource type="Script" path="res://editor/track_panel.gd" id="5_atvsg"]
-[ext_resource type="Script" path="res://editor/KeyTrackContainer.gd" id="8_00sdj"]
+[ext_resource type="Texture2D" uid="uid://fkl1x8ncsj7" path="res://editor/background.png" id="3_6b24g"]
+[ext_resource type="PackedScene" uid="uid://cmnoxpkxctjxr" path="res://line_2d.tscn" id="4_0pt4v"]
 [ext_resource type="AudioStream" uid="uid://77pt0i7yqdcv" path="res://Electro-Light - Throwback [NCS Release].mp3" id="9_kyt1k"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0glbn"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wfdtt"]
-
-[sub_resource type="Animation" id="Animation_atvsg"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hi6ju"]
-_data = {
-"RESET": SubResource("Animation_atvsg")
-}
-
-[node name="RootEditor" type="Control"]
+[node name="LineEditor" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +14,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_02br5")
 
-[node name="Center" type="PanelContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("3_6b24g")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,286 +34,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VContainer" type="VBoxContainer" parent="Center"]
-layout_mode = 2
-
-[node name="HBContainer" type="HBoxContainer" parent="Center/VContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="InpectorPanel" type="PanelContainer" parent="Center/VContainer/HBContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TabContainer" type="TabContainer" parent="Center/VContainer/HBContainer/InpectorPanel"]
-layout_mode = 2
-theme_override_styles/tab_focus = SubResource("StyleBoxFlat_0glbn")
-current_tab = 2
-
-[node name="Settings" type="ScrollContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="GeneralSettings" type="FoldableContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-layout_mode = 2
-title = "General Settings"
-script = null
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings"]
-
-[node name="NameSongLineEdit" type="LineEdit" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Name Of Song:"
-
-[node name="ArtistSongLineEdit" type="LineEdit" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Artist Of Song:"
-
-[node name="ChartOfLineEdit" type="LineEdit" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Chart Made Of:"
-
-[node name="HSeparator2" type="HSeparator" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-
-[node name="CoverSongButton" type="Button" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-text = "Change Cover Of Song"
-
-[node name="AudioSongButton" type="Button" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-text = "Change Audio Of Song"
-
-[node name="HSeparator" type="HSeparator" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Settings/VBoxContainer/GeneralSettings/VBoxContainer"]
-layout_mode = 2
-item_count = 4
-popup/item_0/text = "Dificultad"
-popup/item_0/disabled = true
-popup/item_0/separator = true
-popup/item_1/text = "SD"
-popup/item_1/id = 1
-popup/item_2/text = "HD"
-popup/item_2/id = 2
-popup/item_3/text = "4K"
-popup/item_3/id = 3
-
-[node name="Inspector" type="ScrollContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("2_atvsg")
-metadata/_tab_index = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Line Select" type="Label" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "No Line Select "
-
-[node name="LineEdit" type="LineEdit" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Line Name"
-
-[node name="Position" type="FoldableContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-layout_mode = 2
-folded = true
-title = "Position"
-script = null
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer/Position"]
-visible = false
-
-[node name="X" type="SpinBox" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer/Position/VBoxContainer"]
-layout_mode = 2
-prefix = "X:"
-
-[node name="Y" type="SpinBox" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer/Position/VBoxContainer"]
-layout_mode = 2
-prefix = "Y:"
-
-[node name="SpinBox" type="SpinBox" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector/VBoxContainer"]
-layout_mode = 2
-prefix = "Rotation: "
-
-[node name="Loops" type="ScrollContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Loops"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Center/VContainer/HBContainer/InpectorPanel"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer"]
-layout_mode = 2
-script = ExtResource("3_atvsg")
-
-[node name="PlayButton" type="Button" parent="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-text = "Play"
-
-[node name="VSeparator" type="VSeparator" parent="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="LoopModeButton" type="Button" parent="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-toggle_mode = true
-text = "Loop"
-
-[node name="GlobalModeButton" type="Button" parent="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-toggle_mode = true
-text = "Global"
-
-[node name="viewport" type="CenterContainer" parent="Center/VContainer/HBContainer"]
-layout_mode = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Center/VContainer/HBContainer/viewport"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="SubViewport" type="SubViewport" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(576, 324)
-render_target_update_mode = 4
-
-[node name="Node2D" type="Node2D" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport"]
-script = ExtResource("1_8618v")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D"]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D/CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 5
-stretch_mode = 5
 
-[node name="Camera2D" type="Camera2D" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D"]
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D"]
 ignore_rotation = false
-zoom = Vector2(0.5, 0.5)
-limit_left = 0
 
-[node name="AnimNodes" type="Node2D" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D"]
+[node name="Line2D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node2D" instance=ExtResource("4_0pt4v")]
 
-[node name="Mouse" type="Area2D" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D"]
-
-[node name="Collision" type="CollisionShape2D" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D/Mouse"]
-shape = SubResource("CircleShape2D_wfdtt")
-
-[node name="AnimationLoopPlayer" type="AnimationPlayer" parent="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_hi6ju")
-}
-script = ExtResource("4_02br5")
-metadata/_custom_type_script = "uid://c8repwndatkri"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Center/VContainer/HBContainer/viewport"]
+[node name="VSlider" type="VSlider" parent="HBoxContainer"]
 layout_mode = 2
-
-[node name="TrackPanel" type="PanelContainer" parent="Center/VContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("5_atvsg")
-
-[node name="ContainerModeLoop" type="VBoxContainer" parent="Center/VContainer/TrackPanel"]
-layout_mode = 2
-
-[node name="UpContainer" type="HBoxContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop"]
-layout_mode = 2
-
-[node name="AddTrackButton" type="Button" parent="Center/VContainer/TrackPanel/ContainerModeLoop/UpContainer"]
-layout_mode = 2
-text = "Add Track"
-
-[node name="RemoveTrackButton" type="Button" parent="Center/VContainer/TrackPanel/ContainerModeLoop/UpContainer"]
-layout_mode = 2
-text = "Remove Track"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop"]
-custom_minimum_size = Vector2(0, 285)
-layout_mode = 2
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HSlider" type="HSlider" parent="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-step = 0.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
-
-[node name="KeyTrackContainer" type="VBoxContainer" parent="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("8_00sdj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_kyt1k")
-
-[connection signal="select_changed" from="." to="Center/VContainer/HBContainer/InpectorPanel/TabContainer/Inspector" method="_on_root_editor_select_changed"]
-[connection signal="toggled" from="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer/PlayButton" to="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer" method="_on_play_button_toggled"]
-[connection signal="toggled" from="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer/LoopModeButton" to="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer" method="_on_loop_mode_button_toggled"]
-[connection signal="toggled" from="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer/GlobalModeButton" to="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer" method="_on_global_mode_button_toggled"]
-[connection signal="mode_changed" from="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D/AnimationLoopPlayer" to="Center/VContainer/HBContainer/InpectorPanel/AspectRatioContainer/HBoxContainer" method="_on_animation_loop_player_mode_changed"]
-[connection signal="mode_changed" from="Center/VContainer/HBContainer/viewport/SubViewportContainer/SubViewport/Node2D/AnimationLoopPlayer" to="Center/VContainer/TrackPanel" method="_on_animation_loop_player_mode_changed"]
-[connection signal="pressed" from="Center/VContainer/TrackPanel/ContainerModeLoop/UpContainer/AddTrackButton" to="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2/VBoxContainer/ScrollContainer/KeyTrackContainer" method="_on_add_line_button_pressed"]
-[connection signal="pressed" from="Center/VContainer/TrackPanel/ContainerModeLoop/UpContainer/RemoveTrackButton" to="Center/VContainer/TrackPanel/ContainerModeLoop/ScrollContainer/VBoxContainer2/VBoxContainer/ScrollContainer/KeyTrackContainer" method="_on_remove_line_button_pressed"]

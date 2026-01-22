@@ -15,7 +15,7 @@ height = 50.0
 
 [node name="Line2D" type="Line2D"]
 points = PackedVector2Array(-576, 0, 576, 0)
-default_color = Color(1, 1, 1, 0.3)
+default_color = Color(1, 1, 1, 0.568627)
 script = ExtResource("1_2jggx")
 
 [node name="LostLine" type="Area2D" parent="." groups=["Line"]]

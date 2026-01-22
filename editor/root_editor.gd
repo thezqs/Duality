@@ -1,13 +1,8 @@
 extends Control
 
-class_name RootEditor
+class_name LineEditor
 
 signal select_changed(new_node: Node2D)
-
-var line_select: Node2D:
-	set(new):
-		line_select = new
-		select_changed.emit(new)
 
 func _ready() -> void:
 	var stream: AudioStream = %AudioStreamPlayer.stream

@@ -69,15 +69,13 @@ var current_horizontal_size: float = 576.0
 
 func _physics_process(_delta: float) -> void:
 	if is_activated:
-		var horizontal_size: float = WIDTH * width_multiplicer
-		
-		pointer.position.x = clamp(get_local_mouse_position().x, - horizontal_size,  horizontal_size)
+		pointer.position.x = clamp(get_local_mouse_position().x, -current_horizontal_size, current_horizontal_size)
 	
-	var current_time: float = GameManager.current_time
+	var current_time: float = Manager.current_time
 	
 	# NOTA: Uso la 'viewport_size_x' porque la linea rotara en el futuro. 
 	# Y prefiero que haya espacio de sobra a que se vea como si las notas aparecen de la nada.
-	var viewport_size_x: float = GameManager.viewport_size_x
+	var viewport_size_x: float = Manager.viewport_size_x
 	
 	for note in current_notes.keys():
 		note = note as Note
@@ -104,7 +102,7 @@ func add_note(pos_x: float, time_init: float, time_end: float):
 func _on_area_entered(area: Area2D, is_aciert: bool) -> void:
 	if area == lostLine or not is_activated or area.is_in_group("Line"): return
 	
-	GameManager.points += int(is_aciert)
+	Manager.points += int(is_aciert)
 	
 	area.queue_free()
 	current_notes.erase(area)

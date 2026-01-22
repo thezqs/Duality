@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Editor="*res://editor/globals/editor.gd"
-GameManager="*res://core/globals/game_manager.gd"
+Manager="*res://core/globals/manager.gd"
 
 [display]
 
