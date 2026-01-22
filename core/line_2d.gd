@@ -2,8 +2,11 @@ extends Line2D
 
 class_name Line
 
+## Define el ncho por defecto de la linea
+const WIDTH: float = 576.0
+
 ## La escena de la nota.
-const NOTE_SCENE = preload("res://core/note.tscn")
+const NOTE_SCENE: PackedScene = preload("res://core/note.tscn")
 
 ## Una variable que controla la duracion de la animacion de activar o desactivar la linea.
 var animation_activate_time: float = 0.5
@@ -40,25 +43,35 @@ var is_activated: bool = false:
 			await tween.finished
 			pointer.visible = new
 
-## Una variable que controla el ancho horizontal de la linea.
-var horizontal_width: float = 576.0:
+## Un multiplicador que controla el ancho horizontal de la linea.
+var width_multiplicer: float = 1:
 	set(new):
+		width_multiplicer = clamp(new, 0, 1)
+		
 		# actualizamos el ancho visual
-		horizontal_width = new
-		points[0].x = -new
-		points[1].x = new
+		var horizontal_size: float = WIDTH * width_multiplicer
+		
+		points[0].x = -horizontal_size
+		points[1].x = horizontal_size
 		
 		# obtenemos la CollisionShape2D y la SegmentShape2D
 		var colision: CollisionShape2D = lostLine.get_node("CollisionShape2D")
 		var shape: SegmentShape2D = colision.shape
 		
 		# actualizamos la colicion para que coincida con lo que se ve
-		shape.a.x = -new
-		shape.b.x = new
+		shape.a.x = -horizontal_size
+		shape.b.x = horizontal_size
+		
+		current_horizontal_size = horizontal_size
+
+## Una variable de solo lectura para obtener el ancho actual de la linea
+var current_horizontal_size: float = 576.0
 
 func _physics_process(_delta: float) -> void:
 	if is_activated:
-		pointer.position.x = clamp(get_local_mouse_position().x, -horizontal_width, horizontal_width)
+		var horizontal_size: float = WIDTH * width_multiplicer
+		
+		pointer.position.x = clamp(get_local_mouse_position().x, - horizontal_size,  horizontal_size)
 	
 	var current_time: float = GameManager.current_time
 	
@@ -78,16 +91,15 @@ func _physics_process(_delta: float) -> void:
 		var weight = (current_time - times.time_init) / denominator
 		
 		note.position.y = lerp(-viewport_size_x, 0, weight)
+		note.position.x = times.orig_x * width_multiplicer
 
 func add_note(pos_x: float, time_init: float, time_end: float):
-	pos_x = clamp(pos_x, -horizontal_width, horizontal_width) 
-	
 	var note_ins = NOTE_SCENE.instantiate()
-	note_ins.position.x = pos_x
+	note_ins.position.x = pos_x * width_multiplicer
 	
 	add_child(note_ins)
 	
-	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end}
+	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end, "orig_x" : pos_x}
 
 func _on_area_entered(area: Area2D, is_aciert: bool) -> void:
 	if area == lostLine or not is_activated or area.is_in_group("Line"): return
