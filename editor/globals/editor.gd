@@ -19,4 +19,5 @@ var song_px_size: float = 0:
 		song_px_size_changed.emit(new)
 
 ## variable que define la cancion actual
-var song_resource ## Nota: Aun no funciona de mucho
+var song_resource: SongResource
+ 

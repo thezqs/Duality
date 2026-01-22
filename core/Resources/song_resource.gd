@@ -4,7 +4,7 @@ class_name SongResource
 
 ## Todas las dificultades disponibles para elegir.
 ## SD es facil, HD es medio, 4K (cuatro k) es dificil y 8K (ocho k) es insano
-enum DIFICULTADES {SD,HD, CUATRO_K, OCHO_K}
+enum DIFFICULTIES {SD,HD, FOUR_K, EIGHT_K}
 
 @export_category("general")
 
@@ -24,7 +24,7 @@ enum DIFICULTADES {SD,HD, CUATRO_K, OCHO_K}
 @export var audio: AudioStream
 
 ## La dificultad
-@export var dificultad: DIFICULTADES
+@export var difficulty: DIFFICULTIES
 
 @export_category("animation")
 
@@ -33,3 +33,15 @@ enum DIFICULTADES {SD,HD, CUATRO_K, OCHO_K}
 
 ## La secuencia de loops 
 @export var loop_sequence: Array[Array] = []
+
+@export_category("chart")
+
+## Se usa para acceder a las notas de las lineas.
+## Se accede con el ID de una linea (int) y te retorna un array que contiene 
+## el tiempo (float) y la posicion (float) de la nota.
+@export var lines: Dictionary = {}
+
+## Se usa para acceder a las notas de las torres.
+## Se accede con el ID de una torre (int) y te retorna un array que contiene 
+## el tiempo (float) de la nota.
+@export var towers: Dictionary = {}
