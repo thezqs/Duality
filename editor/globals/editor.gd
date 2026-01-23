@@ -20,7 +20,7 @@ var editor_mode: bool = false
 ## O, en otras palabras, define la variable que se resta al tiempo actual 
 ## para definir el tiempo de aparicion de la nota.
 ## (Nota: Esta variable esta en steps, no en segundos)
-var time_before_note: int = 8
+var time_before_note: int = 16
 
 ## Una variable cache para obtener el bpm de la cancion en edicion actual
 var bpm: float = 150.0
@@ -34,8 +34,10 @@ var song_px_size: float = 0:
 		song_px_size = new
 		song_px_size_changed.emit(new)
 
+var song_steps_size: int = 0
+
 ## Variable que define la cancion actual
-var song_resource: SongResource
+var song_resource: SongResource 
 
 ## Variable de solo lectura para obtener el tiempo actual en steps
 var current_time_steps: float = 0.0
@@ -50,11 +52,23 @@ func _current_time_changed(new_time):
 
 
 ## Iniciar el editor. (Esta funcion no habre la escena del editor)
-func start_editing():
+func start_editing(song: SongResource):
 	if not Manager.current_time_changed.is_connected(_current_time_changed):
 		Manager.current_time_changed.connect(_current_time_changed)
 	
 	editor_mode = true
+	
+	song_resource = song
+	
+	var stream = song_resource.audio
+	var stream_seconds = stream.get_length()
+	
+	@warning_ignore("integer_division")
+	var stream_beats = stream_seconds * (bpm / 60)
+	song_steps_size = stream_beats * STEPS_PER_BEAT
+	song_px_size = song_steps_size * PX_PER_STEP
+	
+	_update_conversion_cache()
 
 ## Detener el editor. (Esta funcion no cierra la escena del editor)
 func stop_editing():

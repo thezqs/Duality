@@ -104,7 +104,7 @@ func _on_area_entered(area: Area2D, is_aciert: bool) -> void:
 
 
 ## Añade una nota y retorna la nota añadida
-func add_note(pos_x: float, time_init: float, time_end: float) -> Note:
+func add_note(pos_x: float, time_init: float, time_end: float, type: Note.TYPE = Note.TYPE.LIGHT) -> Note:
 	var note_ins = NOTE_SCENE.instantiate()
 	
 	pos_x = clamp(pos_x, -WIDTH, WIDTH)
@@ -112,6 +112,8 @@ func add_note(pos_x: float, time_init: float, time_end: float) -> Note:
 	note_ins.position.x = pos_x * width_multiplicer
 	
 	add_child(note_ins)
+	
+	note_ins.current_type = type
 	
 	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end, "orig_x" : pos_x}
 	
