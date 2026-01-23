@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Editor="*res://editor/globals/editor.gd"
 Manager="*res://core/globals/manager.gd"
+Editor="*res://editor/globals/editor.gd"
 
 [display]
 

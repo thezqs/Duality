@@ -1,5 +1,6 @@
 extends Line2D
 
+## La linea tipica de el juego.
 class_name Line
 
 ## Define el ncho por defecto de la linea
@@ -19,6 +20,9 @@ var animation_activate_time: float = 0.5
 
 ## Contiene las notas activas en el momento de la ejecucion
 var current_notes: Dictionary = {}
+
+## Una variable de solo lectura para obtener el ancho actual de la linea
+var current_horizontal_size: float = 576.0
 
 ## Una variable que controla si la linea esta activada o apagada.
 var is_activated: bool = false:
@@ -64,9 +68,6 @@ var width_multiplicer: float = 1:
 		
 		current_horizontal_size = horizontal_size
 
-## Una variable de solo lectura para obtener el ancho actual de la linea
-var current_horizontal_size: float = 576.0
-
 func _physics_process(_delta: float) -> void:
 	if is_activated:
 		pointer.position.x = clamp(get_local_mouse_position().x, -current_horizontal_size, current_horizontal_size)
@@ -88,21 +89,30 @@ func _physics_process(_delta: float) -> void:
 		
 		var weight = (current_time - times.time_init) / denominator
 		
-		note.position.y = lerp(-viewport_size_x, 0, weight)
+		note.position.y = lerp(-viewport_size_x, 0.0, weight)
 		note.position.x = times.orig_x * width_multiplicer
-
-func add_note(pos_x: float, time_init: float, time_end: float):
-	var note_ins = NOTE_SCENE.instantiate()
-	note_ins.position.x = pos_x * width_multiplicer
-	
-	add_child(note_ins)
-	
-	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end, "orig_x" : pos_x}
 
 func _on_area_entered(area: Area2D, is_aciert: bool) -> void:
 	if area == lostLine or not is_activated or area.is_in_group("Line"): return
 	
 	Manager.points += int(is_aciert)
 	
+	if Editor.editor_mode: return
+	
 	area.queue_free()
 	current_notes.erase(area)
+
+
+## Añade una nota y retorna la nota añadida
+func add_note(pos_x: float, time_init: float, time_end: float) -> Note:
+	var note_ins = NOTE_SCENE.instantiate()
+	
+	pos_x = clamp(pos_x, -WIDTH, WIDTH)
+	
+	note_ins.position.x = pos_x * width_multiplicer
+	
+	add_child(note_ins)
+	
+	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end, "orig_x" : pos_x}
+	
+	return note_ins

@@ -1,4 +1,5 @@
 extends AnimationPlayerPlus
+
 ## Un nodo encargado de editar, reproducir y compilar AnimationLoops.
 class_name AnimationLoopPlayer
 
@@ -31,7 +32,7 @@ var current_mode: MODE = MODE.LOOP:
 	set = _set_mode
 
 ## Todos los loops contenidos.
-## Los loops se guardan [clave/int] : [loop/AnimationLoop].
+## [b]Nota:[/b] Los loops se guardan [clave/int] : [loop/AnimationLoop].
 var loops_libary: Dictionary = {}:
 	set = set_loops_libary
 
