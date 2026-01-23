@@ -82,6 +82,7 @@ func _physics_process(_delta: float) -> void:
 		note = note as Note
 		
 		var times = current_notes[note]
+		
 		var denominator = times.time_end - times.time_init
 		
 		# Evitamos división por cero por si acaso
@@ -118,3 +119,8 @@ func add_note(pos_x: float, time_init: float, time_end: float, type: Note.TYPE =
 	current_notes[note_ins] = {"time_init" : time_init, "time_end" : time_end, "orig_x" : pos_x}
 	
 	return note_ins
+
+func remove_note(note: Note):
+	if is_instance_valid(note):
+		note.queue_free()
+		current_notes.erase(note)
