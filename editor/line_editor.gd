@@ -46,18 +46,11 @@ func _on_sub_viewport_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				var pos_x = event.position.x * 1.5
-				
-				print(Manager.current_time)
-				
-				print(Editor.current_time_steps)
+				var pos_x = (event.position.x - 288) * 2
 				
 				var current_time_steps = snapped(Editor.current_time_steps, 1.0)
 				var time_init_steps = current_time_steps - Editor.time_before_note
 				var time_init_seg = Editor.steps_to_seconds(time_init_steps)
-				
-				print(time_init_seg)
-				print(Editor.steps_to_seconds(current_time_steps))
 				
 				note_select = %Line.add_note(pos_x, time_init_seg, Editor.steps_to_seconds(current_time_steps) )
 
