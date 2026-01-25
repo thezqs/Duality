@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0whxetw2nttx"]
+
+[ext_resource type="Script" path="res://editor/Core/Panels/LibraryPanel.gd" id="1_7sh6r"]
+
+[node name="LibraryPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_7sh6r")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+current_tab = 0
+
+[node name="Loops" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Loops"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SearchLoopsLineEdit" type="LineEdit" parent="TabContainer/Loops/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Search Loops"
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Loops/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LoopsItemList" type="ItemList" parent="TabContainer/Loops/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Plugins" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Plugins"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SearchPluginsLineEdit" type="LineEdit" parent="TabContainer/Plugins/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Search Plugins"
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Plugins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PluginsItemList" type="ItemList" parent="TabContainer/Plugins/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

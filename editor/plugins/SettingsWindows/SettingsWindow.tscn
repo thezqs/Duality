@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7wj2dh68x1sb"]
+
+[ext_resource type="Script" path="res://editor/plugins/SettingsWindows/SettingsWindow.gd" id="1_xta4s"]
+
+[node name="SettingsWindow" type="Window"]
+title = "Project Settings"
+position = Vector2i(0, 36)
+size = Vector2i(600, 400)
+script = ExtResource("1_xta4s")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="General" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SongNameLineEdit" type="LineEdit" parent="TabContainer/General/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Name Of Song"
+
+[node name="ArtistNameLineEdit" type="LineEdit" parent="TabContainer/General/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Name Of Artist"
+
+[node name="CharterNameLineEdit" type="LineEdit" parent="TabContainer/General/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Chart Made By"
+
+[node name="Control" type="Control" parent="TabContainer/General/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SetCoverButton" type="Button" parent="TabContainer/General/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Set Cover Image"
+alignment = 0
+
+[node name="SetAudioButton" type="Button" parent="TabContainer/General/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Set Audio File"
+alignment = 0
+
+[connection signal="text_changed" from="TabContainer/General/VBoxContainer/SongNameLineEdit" to="." method="_on_song_name_line_edit_text_changed"]
+[connection signal="text_changed" from="TabContainer/General/VBoxContainer/ArtistNameLineEdit" to="." method="_on_artist_name_line_edit_text_changed"]
+[connection signal="text_changed" from="TabContainer/General/VBoxContainer/CharterNameLineEdit" to="." method="_on_charter_name_line_edit_text_changed"]

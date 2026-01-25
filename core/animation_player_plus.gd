@@ -5,6 +5,7 @@ class_name AnimationPlayerPlus
 
 ## La animacion cargada actualmente.
 var animation: AnimationLoop
+
 ## La libreria de animacion global.
 var global_library: AnimationLibrary
 
@@ -20,10 +21,10 @@ func _ready() -> void:
 	add_animation_library("Global", global_library)
 
 func _process(_delta: float) -> void:
-	if not is_animation_playing:
-		seek(global_time)
-	elif not is_playing() and not is_animation_playing:
+	if not is_playing() and not is_animation_playing:
 		play("preview")
+		seek(global_time)
+	elif not is_animation_playing:
 		seek(global_time)
 
 ## Funcion para reproducir la animacion actual.
@@ -45,10 +46,11 @@ func create_animation():
 
 ## Funcion para cargar una animacion.
 func load_animation(anim: Animation):
-	if not global_library.has_animation("preview"):
-		animation = anim
-		global_library.add_animation("preview", animation)
-		play("Global/preview")
+	if global_library.has_animation("preview"): remove_animation()
+	
+	animation = anim
+	global_library.add_animation("preview", animation)
+	play("Global/preview")
 
 ## Funcion para remover una animacion.
 ## La vista previa se pausara hasta agregar una nueva.
@@ -67,9 +69,9 @@ func insert_animation_key(track_index: int, time: float, key):
 	animation.track_insert_key(track_index, time, key)
 
 ## Funcion para agregar un track de animacion.
-func add_anim_track(node_path: String, variant: String, animation_type: Animation.TrackType) -> int:
+func add_anim_track(node: Node, variant: String, animation_type: Animation.TrackType) -> int:
 	var track_index = animation.add_track(animation_type)
-	animation.track_set_path(track_index, node_path + ":" + variant)
+	animation.track_set_path(track_index, String(node.get_path()) + ":" + variant)
 	
 	return track_index
 

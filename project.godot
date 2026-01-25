@@ -12,14 +12,14 @@ config_version=5
 
 config/name="R-Game"
 config/tags=PackedStringArray("ritmo")
-run/main_scene="uid://bpip07qgqvpp7"
+run/main_scene="res://editor/Core/RootEditor.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Manager="*res://core/globals/manager.gd"
-Editor="*res://editor/globals/editor.gd"
+Editor="*res://editor/Core/globals/Editor.gd"
 
 [display]
 

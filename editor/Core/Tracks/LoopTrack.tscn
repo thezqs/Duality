@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgiwdw04vjlry"]
+
+[ext_resource type="Script" path="res://editor/Core/Tracks/LoopTrack.gd" id="1_lhyrx"]
+
+[node name="LoopTrack" type="Panel"]
+offset_right = 1152.0
+offset_bottom = 50.0
+script = ExtResource("1_lhyrx")

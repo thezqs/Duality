@@ -3,7 +3,7 @@ extends Resource
 ## Un recurso especial para las canciones
 class_name SongResource
 
-## Todas las dificultades disponibles para elegir. [br]
+## Todas las dificultades disponibles para elegir.
 ## SD es facil, HD es medio, 4K (cuatro k) es dificil y 8K (ocho k) es insano
 enum DIFFICULTIES {SD,HD, FOUR_K, EIGHT_K}
 
@@ -32,8 +32,8 @@ enum DIFFICULTIES {SD,HD, FOUR_K, EIGHT_K}
 
 @export_category("animation")
 
-## Todos los loops contenidos. [br]
-## [b]Nota:[/b] Para acceder a un loop tienes que pasarle un ID ([int])
+## Todos los loops contenidos. 
+## Nota: Para acceder a un loop tienes que pasarle un ID ([int])
 ## y esto te dara un [AanimationLoop]
 @export var loops_libary: Dictionary = {}
 
@@ -42,12 +42,12 @@ enum DIFFICULTIES {SD,HD, FOUR_K, EIGHT_K}
 
 @export_category("chart")
 
-## Se usa para acceder a las notas de las lineas. [br]
-## [b]Nota:[/b] Se accede con el ID de una linea ([int]) y te retorna un [Array] que contiene 
-## el tiempo ([float]) y la posicion ([float]) de la nota.
+## Se usa para acceder a las notas de las lineas. 
+## Nota: Se accede con el ID de una linea ([int]) y te retorna un [Dictionary]
+## que si ingresas el tiempo de la nota ([float]) en segundos te retorna la posicion X de la nota.
 @export var lines: Dictionary = {}
 
-## Se usa para acceder a las notas de las torres. [br]
-## [b]Nota:[/b] Se accede con el ID de una torre ([int]) y te retorna un [Array] que contiene 
-## el tiempo ([float]) de la nota.
+## Se usa para acceder a las notas de las torres. 
+## Nota: Se accede con el ID de una torre ([int]) y te retorna un [Array] que contiene 
+## el tiempo ([float]) en segundos de cada nota.
 @export var towers: Dictionary = {}

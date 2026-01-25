@@ -123,6 +123,10 @@ func compile_animation() -> AnimationLoop:
 					
 					animation_compiled.track_insert_key(compile_animation_track_id, \
 					loop.time_init + key_time, key)
+			
+			# Nota: Se que este await realentiza todo el juego.
+			# Luego optimizo esta parte para que suseda de vez en cuando.
+			# Pero por ahora, solo:
 			await get_tree().process_frame
 	
 	is_compile = false

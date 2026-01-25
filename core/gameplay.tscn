@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://co3gigduc1080"]
+
+[ext_resource type="Script" path="res://core/gameplay.gd" id="1_elfsj"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_elfsj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
