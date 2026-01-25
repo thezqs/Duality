@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1bqb782nc6su"]
+[gd_scene load_steps=9 format=3 uid="uid://b1bqb782nc6su"]
 
+[ext_resource type="Theme" uid="uid://b8u4odj3rruh3" path="res://core/Resources/Themes/DefaultTheme.tres" id="1_4wrtj"]
 [ext_resource type="Script" path="res://editor/Core/RootEditor.gd" id="1_yrs6b"]
 [ext_resource type="Texture2D" uid="uid://fkl1x8ncsj7" path="res://editor/Assets/background.png" id="2_2v7fk"]
 [ext_resource type="Script" path="res://editor/Core/PluginManager.gd" id="2_ca4pa"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4wrtj")
 script = ExtResource("1_yrs6b")
 
 [node name="PluginManager" type="Node" parent="." node_paths=PackedStringArray("root_editor")]

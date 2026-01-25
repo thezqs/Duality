@@ -26,6 +26,10 @@ Editor="*res://editor/Core/globals/Editor.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [global_group]
 
 Line=""

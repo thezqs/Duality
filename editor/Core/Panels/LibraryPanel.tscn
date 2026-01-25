@@ -55,11 +55,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SearchPluginsLineEdit" type="LineEdit" parent="TabContainer/Plugins/VBoxContainer"]
+visible = false
 layout_mode = 2
 placeholder_text = "Search Plugins"
 alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Plugins/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -68,3 +70,10 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Plugins/VBoxContainer"]
+layout_mode = 2
+text = "Running plugins is not yet possible :(... See this section later!"
+autowrap_mode = 2
+
+[connection signal="item_activated" from="TabContainer/Plugins/VBoxContainer/ScrollContainer/PluginsItemList" to="." method="_on_plugins_item_list_item_activated"]

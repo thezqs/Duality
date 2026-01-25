@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8u4odj3rruh3"]
+
+[ext_resource type="StyleBox" uid="uid://cqa37spqmo4eg" path="res://core/Resources/Themes/WindowTheme.tres" id="1_hdh20"]
+
+[resource]
+Window/styles/embedded_border = ExtResource("1_hdh20")
+Window/styles/embedded_unfocused_border = ExtResource("1_hdh20")
