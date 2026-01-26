@@ -1,7 +1,12 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8u4odj3rruh3"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b8u4odj3rruh3"]
 
 [ext_resource type="StyleBox" uid="uid://cqa37spqmo4eg" path="res://core/Resources/Themes/WindowTheme.tres" id="1_hdh20"]
+[ext_resource type="FontFile" uid="uid://bdcw6ej1ksthi" path="res://assets/Roboto/Roboto-VariableFont_wdth,wght.ttf" id="1_jv7bl"]
 
 [resource]
+Button/fonts/font = ExtResource("1_jv7bl")
+Label/fonts/font = ExtResource("1_jv7bl")
+TabBar/fonts/font = ExtResource("1_jv7bl")
+Window/fonts/title_font = ExtResource("1_jv7bl")
 Window/styles/embedded_border = ExtResource("1_hdh20")
 Window/styles/embedded_unfocused_border = ExtResource("1_hdh20")

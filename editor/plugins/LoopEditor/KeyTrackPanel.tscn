@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck0fkhrkagtvt"]
+
+[ext_resource type="Script" path="res://editor/plugins/LoopEditor/KeyTrackPanel.gd" id="1_vvp7d"]
+[ext_resource type="Texture2D" uid="uid://ckkwan0urboph" path="res://assets/icons/transform_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="2_6x5l0"]
+[ext_resource type="Script" path="res://editor/plugins/LoopEditor/KeyTrack.gd" id="2_ylff3"]
+[ext_resource type="Texture2D" uid="uid://dcjve256giwup" path="res://assets/icons/autorenew_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="3_l8srm"]
+[ext_resource type="Texture2D" uid="uid://cbbemndxh3n0x" path="res://assets/icons/colors_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="4_uwcxr"]
+[ext_resource type="Texture2D" uid="uid://c0malh5uyfx0d" path="res://assets/icons/mode_off_on_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="5_gbrmf"]
+
+[node name="KeyTrackPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_vvp7d")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="IconsTrack" type="VBoxContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_6x5l0")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PanelContainer2" type="PanelContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_l8srm")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PanelContainer3" type="PanelContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("4_uwcxr")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PanelContainer4" type="PanelContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/HBoxContainer/VBoxContainer/IconsTrack/PanelContainer4"]
+layout_mode = 2
+texture = ExtResource("5_gbrmf")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="rack" type="Control" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="ScrollContainer/HBoxContainer/rack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Tracks" type="VBoxContainer" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="KeyTrack" type="Panel" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2/Tracks"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+script = ExtResource("2_ylff3")
+
+[node name="KeyTrack2" type="Panel" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2/Tracks"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+script = ExtResource("2_ylff3")
+
+[node name="KeyTrack3" type="Panel" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2/Tracks"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+script = ExtResource("2_ylff3")
+
+[node name="KeyTrack4" type="Panel" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2/Tracks"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+script = ExtResource("2_ylff3")

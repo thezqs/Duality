@@ -4,11 +4,11 @@ extends VBoxContainer
 ## cualquier cosa de manera ordenada en un mensaje de notificacion
 class_name Notifier
 
-func init_notificer(signal_to_connect: Signal):
-	signal_to_connect.connect(notice)
+func init_notificer(signal_to_connect: Signal, color: Color = Color.WHITE):
+	signal_to_connect.connect(notice.bind(color) )
 
-func notice(arg):
-	var text = str(arg)
+func notice(args, color: Color = Color.WHITE):
+	var text = str(args)
 	
 	var label = Label.new()
 	
@@ -20,7 +20,7 @@ func notice(arg):
 	
 	var tween = create_tween()
 	
-	tween.tween_property(label, "modulate", Color.WHITE, 0.5)
+	tween.tween_property(label, "modulate", color, 0.5)
 	
 	await get_tree().create_timer(5).timeout
 	

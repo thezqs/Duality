@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0whxetw2nttx"]
+[gd_scene load_steps=3 format=3 uid="uid://b0whxetw2nttx"]
 
 [ext_resource type="Script" path="res://editor/Core/Panels/LibraryPanel.gd" id="1_7sh6r"]
+[ext_resource type="Texture2D" uid="uid://bom6regpvrefa" path="res://assets/icons/Load.svg" id="2_3arpj"]
 
 [node name="LibraryPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 0)
@@ -12,9 +13,10 @@ script = ExtResource("1_7sh6r")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Loops" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -42,7 +44,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Plugins" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -55,25 +56,39 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SearchPluginsLineEdit" type="LineEdit" parent="TabContainer/Plugins/VBoxContainer"]
-visible = false
 layout_mode = 2
 placeholder_text = "Search Plugins"
 alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Plugins/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
 [node name="PluginsItemList" type="ItemList" parent="TabContainer/Plugins/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="TabContainer/Plugins/VBoxContainer"]
-layout_mode = 2
-text = "Running plugins is not yet possible :(... See this section later!"
-autowrap_mode = 2
+[node name="LoadPlugin" type="TextureRect" parent="TabContainer/Plugins"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+texture = ExtResource("2_3arpj")
+expand_mode = 1
+stretch_mode = 6
 
+[connection signal="text_changed" from="TabContainer/Plugins/VBoxContainer/SearchPluginsLineEdit" to="." method="_on_search_plugins_line_edit_text_changed"]
 [connection signal="item_activated" from="TabContainer/Plugins/VBoxContainer/ScrollContainer/PluginsItemList" to="." method="_on_plugins_item_list_item_activated"]

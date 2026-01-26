@@ -21,7 +21,7 @@ func start_edit(song_edit: SongResource):
 func stop_edit():
 	song = null
 
-## Retorna todos los plugins encontrados en [PLUGIN_PATH]
+## Retorna todos los plugins encontrados en [PLUGIN_PATH] o en la ruta especificada en base_path
 func get_plugins(base_path: String = PLUGIN_PATH) -> Array:
 	var plugins_encontrados = []
 	
@@ -31,10 +31,10 @@ func get_plugins(base_path: String = PLUGIN_PATH) -> Array:
 	var dir = DirAccess.open(base_path)
 	if dir:
 		dir.list_dir_begin()
-		var item_name = dir.get_next()
+		var item_name: String = dir.get_next()
 		
 		while item_name != "":
-			if item_name.begin_with("."): 
+			if item_name.begins_with("."): 
 				item_name = dir.get_next()
 				continue
 			

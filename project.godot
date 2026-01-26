@@ -23,8 +23,8 @@ Editor="*res://editor/Core/globals/Editor.gd"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/aspect="ignore"
+window/ios/allow_high_refresh_rate=false
 
 [editor]
 
@@ -36,5 +36,5 @@ Line=""
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_2d=1

@@ -1,11 +1,5 @@
 extends PluginWindow
 
-## Funcion para abrir el plugin
-func plugin_popup(manager: PluginManager):
-	plugin_manager = manager
-	
-	popup_centered()
-
 func _ready() -> void:
 	var buttom_popup: Popup = %SelectPreviewButton.get_popup()
 	buttom_popup.transparent_bg = true
@@ -20,4 +14,5 @@ func _on_play_button_toggled(toggled_on: bool) -> void:
 	if toggled_on: %AnimationPlayerPlus.animation_play()
 	else: %AnimationPlayerPlus.animation_pause()
 
-#endregion
+func _on_save_button_pressed() -> void:
+	Editor.editor_printerr(["No se ha podido completar la accion."])

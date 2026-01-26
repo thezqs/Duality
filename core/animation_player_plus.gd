@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 ## Funcion para reproducir la animacion actual.
 func animation_play():
 	if not global_library.has_animation("Global/preview"): 
-		printerr("Antes de reproducir una animacion, has una nueva.")
+		Editor.editor_printerr(["Antes de reproducir una animacion, has una nueva."])
 		return
 	
 	is_animation_playing = true
@@ -49,7 +49,7 @@ func create_animation():
 		animation = AnimationLoop.new()
 		global_library.add_animation("preview", animation)
 		play("Global/preview")
-	else: printerr("Ya hay una animacion, elimina la anterior antes de hacer una nueva.")
+	else: Editor.editor_printerr(["Ya hay una animacion, elimina la anterior antes de hacer una nueva."])
 
 ## Funcion para cargar una animacion.
 func load_animation(anim: Animation):
