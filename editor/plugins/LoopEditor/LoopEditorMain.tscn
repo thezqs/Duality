@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://k38eikulniwi"]
+
+[ext_resource type="Script" path="res://editor/plugins/LoopEditor/LoopEditorMain.gd" id="1_573va"]
+[ext_resource type="Theme" uid="uid://b8u4odj3rruh3" path="res://core/Resources/Themes/DefaultTheme.tres" id="1_ru24o"]
+[ext_resource type="StyleBox" uid="uid://cqa37spqmo4eg" path="res://core/Resources/Themes/WindowTheme.tres" id="1_t8v6a"]
+[ext_resource type="Script" path="res://editor/Core/Preview.gd" id="3_3bn0d"]
+[ext_resource type="Script" path="res://core/animation_player_plus.gd" id="5_ex3ll"]
+[ext_resource type="Texture2D" uid="uid://cewdven570y3e" path="res://icon.svg" id="6_nc46i"]
+
+[node name="LoopEditor" type="Window"]
+transparent_bg = true
+title = "Loop Editor"
+initial_position = 1
+size = Vector2i(1000, 550)
+theme = ExtResource("1_ru24o")
+theme_override_styles/embedded_border = ExtResource("1_t8v6a")
+theme_override_styles/embedded_unfocused_border = ExtResource("1_t8v6a")
+script = ExtResource("1_573va")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SelectPreviewButton" type="OptionButton" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "Select Type Preview"
+popup/item_0/separator = true
+popup/item_1/text = "Line"
+popup/item_1/id = 1
+popup/item_2/text = "Tower"
+popup/item_2/id = 2
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NameLoopLineEdit" type="LineEdit" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "MyLoop"
+placeholder_text = "Name Loop"
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="PanelPreview" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/PanelPreview"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/PanelPreview/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(346, 194)
+render_target_update_mode = 4
+
+[node name="Preview" type="Node2D" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+script = ExtResource("3_3bn0d")
+
+[node name="Camera2D" type="Camera2D" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport/Preview"]
+zoom = Vector2(0.3, 0.3)
+
+[node name="AnimationPlayerPlus" type="AnimationPlayer" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport/Preview"]
+unique_name_in_owner = true
+root_node = NodePath("../../../../../..")
+script = ExtResource("5_ex3ll")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport/Preview"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport/Preview/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.258824)
+
+[node name="Icon" type="Sprite2D" parent="VBoxContainer/PanelPreview/SubViewportContainer/SubViewport/Preview"]
+texture = ExtResource("6_nc46i")
+
+[connection signal="toggled" from="VBoxContainer/PanelContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_toggled"]

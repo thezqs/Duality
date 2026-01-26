@@ -7,6 +7,8 @@ class_name PluginManager
 
 const SETTINGS_WINDOW_PATH = "res://editor/plugins/SettingsWindows/SettingsWindow.tscn"
 
+const LOOP_EDITOR_PATH = "res://editor/plugins/LoopEditor/LoopEditorMain.tscn"
+
 ## Variable que guarda los plugins actuales
 var current_plugins: Dictionary = {}
 
@@ -15,19 +17,19 @@ var current_plugins: Dictionary = {}
 ## Una funcion para ejecutar un plugin
 func open_plugin(plugin_path: String):
 	if current_plugins.has(plugin_path):
-		printerr("Plugin ya abierto")
+		Editor.editor_printerr(["Plugin ya abierto"])
 		return
 	
 	var plugin_scene = load(plugin_path)
 	
 	if not plugin_scene is PackedScene:
-		printerr("Archivo de escena invalido")
+		Editor.editor_printerr(["Archivo de escena invalido"])
 		return
 	
 	var plugin_ins = plugin_scene.instantiate()
 	
 	if not plugin_ins is PluginWindow:
-		printerr("La escena no contiene un plugin")
+		Editor.editor_printerr(["La escena no contiene un plugin"])
 		return
 	
 	plugin_ins = plugin_ins as PluginWindow
@@ -53,7 +55,7 @@ func queue_close_plugin(plugin_path: String):
 func plugin_get_node(node_path: String) -> Node:
 	var node = root_editor.get_node(node_path)
 	
-	if node == null: printerr("RootEditor.get_node(", node_path, ") -> null, continuando.")
+	if node == null: Editor.editor_printerr(["RootEditor.get_node(", node_path, ") -> null, continuando."])
 	
 	return node
 
@@ -62,7 +64,7 @@ func plugin_get_node(node_path: String) -> Node:
 func plugin_get_node_in_preview(node_path: String):
 	var node = %Preview.get_node(node_path)
 	
-	if node == null: printerr("$Preview.get_node(", node_path, ") -> null, continuando.")
+	if node == null: Editor.editor_printerr(["$Preview.get_node(", node_path, ") -> null, continuando."])
 	
 	return node
 

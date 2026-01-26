@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1bqb782nc6su"]
+[gd_scene load_steps=10 format=3 uid="uid://b1bqb782nc6su"]
 
 [ext_resource type="Theme" uid="uid://b8u4odj3rruh3" path="res://core/Resources/Themes/DefaultTheme.tres" id="1_4wrtj"]
 [ext_resource type="Script" path="res://editor/Core/RootEditor.gd" id="1_yrs6b"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b0whxetw2nttx" path="res://editor/Core/Panels/LibraryPanel.tscn" id="3_f5d5d"]
 [ext_resource type="Script" path="res://editor/Core/Preview.gd" id="4_pnu73"]
 [ext_resource type="PackedScene" uid="uid://6tgj005nu8nn" path="res://editor/Core/Panels/LoopTrackPanel.tscn" id="5_rmhpb"]
+[ext_resource type="Script" path="res://editor/Core/notifier.gd" id="8_xt12c"]
 
 [sub_resource type="GDScript" id="GDScript_701t8"]
 script/source = "extends PanelContainer
@@ -64,6 +65,10 @@ text = "Library "
 layout_mode = 2
 text = "settings"
 
+[node name="LoopEditorButton" type="Button" parent="UIRoot/TopPanel/HBoxContainer"]
+layout_mode = 2
+text = "Loop Editor"
+
 [node name="HSplitContainer" type="HSplitContainer" parent="UIRoot"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -108,5 +113,22 @@ layout_mode = 2
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[node name="Notifier" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("8_xt12c")
+
 [connection signal="toggled" from="UIRoot/TopPanel/HBoxContainer/LoopsLibraryButton" to="." method="_on_loops_libary_button_toggled"]
 [connection signal="pressed" from="UIRoot/TopPanel/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UIRoot/TopPanel/HBoxContainer/LoopEditorButton" to="." method="_on_loop_editor_button_pressed"]

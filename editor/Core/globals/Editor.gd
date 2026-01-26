@@ -7,6 +7,8 @@ const PLUGIN_PATH = "user://plugin"
 
 const STEP_PX: int = 50
 
+signal error(message: String)
+
 var song: SongResource
 
 var settings: SettingsEditor
@@ -67,3 +69,16 @@ func get_plugins(base_path: String = PLUGIN_PATH) -> Array:
 
 func get_loops():
 	pass
+
+func editor_printerr(args: Array):
+	var err = array_to_string(args)
+	error.emit(err)
+	printerr(err)
+
+func array_to_string(array: Array) -> String:
+	var string = ""
+	for i in range(array.size()):
+		string += str(array[i])
+		if i < array.size() - 1:
+			string += " "
+	return string

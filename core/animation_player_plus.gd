@@ -21,14 +21,20 @@ func _ready() -> void:
 	add_animation_library("Global", global_library)
 
 func _process(_delta: float) -> void:
+	if not global_library.has_animation("Global/preview"): return
+	
 	if not is_playing() and not is_animation_playing:
-		play("preview")
+		play("Global/preview")
 		seek(global_time)
 	elif not is_animation_playing:
 		seek(global_time)
 
 ## Funcion para reproducir la animacion actual.
 func animation_play():
+	if not global_library.has_animation("Global/preview"): 
+		printerr("Antes de reproducir una animacion, has una nueva.")
+		return
+	
 	is_animation_playing = true
 
 ## Funcion para pausar la animacion actual.
@@ -43,6 +49,7 @@ func create_animation():
 		animation = AnimationLoop.new()
 		global_library.add_animation("preview", animation)
 		play("Global/preview")
+	else: printerr("Ya hay una animacion, elimina la anterior antes de hacer una nueva.")
 
 ## Funcion para cargar una animacion.
 func load_animation(anim: Animation):
