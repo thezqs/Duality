@@ -1,4 +1,10 @@
-.godot/
-*.translation
-node_modules/
+.godot/ 
+*.import 
 export_presets.cfg
+
+.mono/
+bin/
+obj/
+
+.DS_Store
+Thumbs.db
