@@ -4,6 +4,8 @@ extends VBoxContainer
 ## cualquier cosa de manera ordenada en un mensaje de notificacion
 class_name Notifier
 
+var popups: Array = []
+
 func init_notificer(signal_to_connect: Signal, color: Color = Color.WHITE):
 	signal_to_connect.connect(notice.bind(color) )
 

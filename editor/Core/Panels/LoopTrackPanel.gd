@@ -9,5 +9,4 @@ func add_track():
 	%IconsTrack.add_child(track_icon)
 
 func _on_add_track_button_pressed() -> void:
-	print("add track")
 	add_track()

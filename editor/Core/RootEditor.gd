@@ -15,4 +15,4 @@ func _on_loop_editor_button_pressed() -> void:
 
 
 func _on_left_panel_button_toggled(toggled_on: bool) -> void:
-	%LoopPanel.visible = toggled_on
+	%LirbaryPanel.visible = toggled_on

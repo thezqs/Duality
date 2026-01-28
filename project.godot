@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="R-Game"
+config/name="Dynacore"
 config/tags=PackedStringArray("ritmo")
-run/main_scene="res://editor/Core/RootEditor.tscn"
+run/main_scene="res://Init.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,6 +27,7 @@ Editor="*res://editor/Core/globals/Editor.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/aspect="ignore"
 window/ios/allow_high_refresh_rate=false
 

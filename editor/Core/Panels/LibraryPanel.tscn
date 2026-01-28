@@ -1,26 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0whxetw2nttx"]
+[gd_scene load_steps=5 format=3 uid="uid://b0whxetw2nttx"]
 
 [ext_resource type="Script" path="res://editor/Core/Panels/LibraryPanel.gd" id="1_7sh6r"]
 [ext_resource type="Texture2D" uid="uid://bom6regpvrefa" path="res://assets/icons/Load.svg" id="2_3arpj"]
 
-[node name="LibraryPanel" type="PanelContainer"]
-custom_minimum_size = Vector2(120, 0)
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-size_flags_horizontal = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c41s3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1083g"]
+
+[node name="LibraryPanel" type="TabContainer"]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 648.0
+current_tab = 0
 script = ExtResource("1_7sh6r")
 
-[node name="TabContainer" type="TabContainer" parent="."]
-layout_mode = 2
-current_tab = 1
-
-[node name="Loops" type="Control" parent="TabContainer"]
-visible = false
+[node name="Loops" type="Control" parent="."]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Loops"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Loops"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,26 +26,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SearchLoopsLineEdit" type="LineEdit" parent="TabContainer/Loops/VBoxContainer"]
+[node name="SearchLoopsLineEdit" type="LineEdit" parent="Loops/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Search Loops"
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Loops/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Loops/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="LoopsItemList" type="ItemList" parent="TabContainer/Loops/VBoxContainer/ScrollContainer"]
+[node name="LoopsItemList" type="ItemList" parent="Loops/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c41s3")
 
-[node name="Plugins" type="Control" parent="TabContainer"]
+[node name="Plugins" type="Control" parent="."]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Plugins"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Plugins"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,23 +55,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SearchPluginsLineEdit" type="LineEdit" parent="TabContainer/Plugins/VBoxContainer"]
+[node name="SearchPluginsLineEdit" type="LineEdit" parent="Plugins/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Search Plugins"
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Plugins/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Plugins/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="PluginsItemList" type="ItemList" parent="TabContainer/Plugins/VBoxContainer/ScrollContainer"]
+[node name="PluginsItemList" type="ItemList" parent="Plugins/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1083g")
 
-[node name="LoadPlugin" type="TextureRect" parent="TabContainer/Plugins"]
+[node name="LoadPlugin" type="TextureRect" parent="Plugins"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -90,5 +91,5 @@ texture = ExtResource("2_3arpj")
 expand_mode = 1
 stretch_mode = 6
 
-[connection signal="text_changed" from="TabContainer/Plugins/VBoxContainer/SearchPluginsLineEdit" to="." method="_on_search_plugins_line_edit_text_changed"]
-[connection signal="item_activated" from="TabContainer/Plugins/VBoxContainer/ScrollContainer/PluginsItemList" to="." method="_on_plugins_item_list_item_activated"]
+[connection signal="text_changed" from="Plugins/VBoxContainer/SearchPluginsLineEdit" to="." method="_on_search_plugins_line_edit_text_changed"]
+[connection signal="item_activated" from="Plugins/VBoxContainer/ScrollContainer/PluginsItemList" to="." method="_on_plugins_item_list_item_activated"]

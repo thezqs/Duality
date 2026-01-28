@@ -1,4 +1,4 @@
-extends PanelContainer
+extends TabContainer
 
 var plugins: Array
 
@@ -31,9 +31,9 @@ func _ready() -> void:
 ## Se usa solo para la animacion de carga
 func _process(delta: float) -> void:
 	if is_load:
-		$TabContainer/Plugins/LoadPlugin.rotation += delta * 5
+		$Plugins/LoadPlugin.rotation += delta * 5
 	else: 
-		$TabContainer/Plugins/LoadPlugin.visible = false
+		$Plugins/LoadPlugin.visible = false
 		set_process(false)
 
 func _on_plugins_item_list_item_activated(index: int) -> void:

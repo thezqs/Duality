@@ -21,4 +21,9 @@ func plugin_popup(manager: PluginManager):
 ## Esta funcion puede ser modificada en clases ederadas
 func _close_requested():
 	close.emit()
-	queue_free() ## Cerramos y ya
+	
+	var tween = create_tween()
+	
+	tween.tween_property(self,"size:y", 0 , 0.1)
+	
+	tween.tween_callback(queue_free)

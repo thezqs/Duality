@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck0fkhrkagtvt"]
+[gd_scene load_steps=10 format=3 uid="uid://ck0fkhrkagtvt"]
 
+[ext_resource type="Theme" uid="uid://b8u4odj3rruh3" path="res://assets/Resources/Themes/Dark/DefaultDarkTheme.tres" id="1_uovyc"]
 [ext_resource type="Script" path="res://editor/plugins/LoopEditor/KeyTrackPanel.gd" id="1_vvp7d"]
 [ext_resource type="Texture2D" uid="uid://ckkwan0urboph" path="res://assets/icons/transform_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="2_6x5l0"]
 [ext_resource type="Script" path="res://editor/plugins/LoopEditor/KeyTrack.gd" id="2_ylff3"]
 [ext_resource type="Texture2D" uid="uid://dcjve256giwup" path="res://assets/icons/autorenew_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="3_l8srm"]
 [ext_resource type="Texture2D" uid="uid://cbbemndxh3n0x" path="res://assets/icons/colors_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="4_uwcxr"]
 [ext_resource type="Texture2D" uid="uid://c0malh5uyfx0d" path="res://assets/icons/mode_off_on_100dp_E3E3E3_FILL0_wght100_GRAD0_opsz48.svg" id="5_gbrmf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sktog"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bctvb"]
 
 [node name="KeyTrackPanel" type="PanelContainer"]
 anchors_preset = 15
@@ -14,10 +19,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+theme = ExtResource("1_uovyc")
 script = ExtResource("1_vvp7d")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sktog")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -85,9 +92,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bctvb")
 
 [node name="Tracks" type="VBoxContainer" parent="ScrollContainer/HBoxContainer/rack/ScrollContainer2"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

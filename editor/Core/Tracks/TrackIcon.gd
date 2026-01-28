@@ -9,6 +9,7 @@ func set_icon(new_icon: Texture2D):
 
 func _init() -> void:
 	custom_minimum_size.y = 50
+	custom_minimum_size.x = 50
 	
 	texture_rect = TextureRect.new()
 	
