@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmnoxpkxctjxr"]
+[gd_scene format=3 uid="uid://cmnoxpkxctjxr"]
 
-[ext_resource type="Script" path="res://core/line_2d.gd" id="1_2jggx"]
+[ext_resource type="Script" uid="uid://dvgpw3cf7kbum" path="res://core/Line.gd" id="1_2jggx"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2jggx"]
 a = Vector2(-576, 0)
@@ -13,24 +13,26 @@ radius = 50.0
 radius = 50.0
 height = 100.0
 
-[node name="Line2D" type="Line2D"]
+[node name="Line2D" type="Line2D" unique_id=1105861742]
 points = PackedVector2Array(-576, 0, 576, 0)
 default_color = Color(1, 1, 1, 0.568627)
 script = ExtResource("1_2jggx")
 
-[node name="LostLine" type="Area2D" parent="." groups=["Line"]]
+[node name="LostLine" type="Area2D" parent="." unique_id=942011423 groups=["Line"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LostLine"]
+[node name="CollisionLine" type="CollisionShape2D" parent="LostLine" unique_id=1739703294]
+unique_name_in_owner = true
 shape = SubResource("SegmentShape2D_2jggx")
 
-[node name="Pointer" type="Area2D" parent="."]
+[node name="Pointer" type="Area2D" parent="." unique_id=1875818877]
 visible = false
 modulate = Color(1, 1, 1, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
+[node name="CollisionPointer" type="CollisionShape2D" parent="Pointer" unique_id=289578535]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_2jggx")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Pointer"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Pointer" unique_id=818498779]
 modulate = Color(0.800491, 0.800491, 0.800491, 1)
 mesh = SubResource("SphereMesh_kkek2")
 

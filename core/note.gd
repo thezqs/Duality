@@ -9,7 +9,9 @@ var color = Color.TRANSPARENT:
 		var tween = create_tween()
 		
 		tween.tween_property(self, "modulate", new, 1)
-		tween.tween_property(self, "color", new, 0)
+		await tween.finished
+		
+		color = new
 
 var current_type: TYPE:
 	set(new):

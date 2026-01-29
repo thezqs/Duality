@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	%ConfirmationDialog.add_button("Exit And Save", true, "exit_and_save")
 	
-	%KeyTrackPanel.init_track(current_loop)
+	%KeyTrackPanel.init_tracks(current_loop)
 
 func _close_requested(is_exit: bool = false):
 	if is_exit:

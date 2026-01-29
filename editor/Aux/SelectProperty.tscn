@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc6fq3h80wo18"]
+
+[ext_resource type="Theme" uid="uid://b8u4odj3rruh3" path="res://assets/Resources/Themes/Dark/DefaultDarkTheme.tres" id="1_4joit"]
+[ext_resource type="Script" path="res://editor/Aux/select_property.gd" id="2_gfrm5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upgxh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ljcd"]
+
+[node name="SelectProperty" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4joit")
+script = ExtResource("2_gfrm5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_upgxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6ljcd")
+auto_height = true

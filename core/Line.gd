@@ -10,7 +10,7 @@ const WIDTH: float = 576.0
 const NOTE_SCENE: PackedScene = preload("res://core/note.tscn")
 
 ## Una variable que controla la duracion de la animacion de activar o desactivar la linea.
-var animation_activate_time: float = 0.5
+@export var animation_activate_time: float = 0.5
 
 ## Una variable de acceso a el nodo Aarea2D de el puntero
 @onready var pointer: Area2D = $Pointer
@@ -25,7 +25,7 @@ var current_notes: Dictionary = {}
 var current_horizontal_size: float = 576.0
 
 ## Una variable que controla si la linea esta activada o apagada.
-var is_activated: bool = false:
+@export var is_activated: bool = false:
 	set(new):
 		 # Queremos que solo se ejecute esto si algo ha cambiado de verdad.
 		if is_activated == new: return
@@ -33,8 +33,8 @@ var is_activated: bool = false:
 		is_activated = new
 		
 		# si esta desactivado, las coliciones se desactivan.
-		pointer.get_node("CollisionShape2D").disabled = not new
-		lostLine.get_node("CollisionShape2D").disabled = not new
+		%CollisionPointer.disabled = not new
+		%CollisionLine.disabled = not new
 		
 		var tween = create_tween()
 		
@@ -48,7 +48,7 @@ var is_activated: bool = false:
 			pointer.visible = new
 
 ## Un multiplicador que controla el ancho horizontal de la linea.
-var width_multiplicer: float = 1:
+@export var width_multiplicer: float = 1:
 	set(new):
 		width_multiplicer = clamp(new, 0, 1)
 		
@@ -59,7 +59,7 @@ var width_multiplicer: float = 1:
 		points[1].x = horizontal_size
 		
 		# obtenemos la CollisionShape2D y la SegmentShape2D
-		var colision: CollisionShape2D = lostLine.get_node("CollisionShape2D")
+		var colision: CollisionShape2D = %CollisionLine
 		var shape: SegmentShape2D = colision.shape
 		
 		# actualizamos la colicion para que coincida con lo que se ve
@@ -78,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 	# Y prefiero que haya espacio de sobra a que se vea como si las notas aparecen de la nada.
 	var viewport_size_x: float = Manager.viewport_size_x
 	
-	for note in current_notes.keys():
+	for note in current_notes:
 		note = note as Note
 		
 		var times = current_notes[note]
